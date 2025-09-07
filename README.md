@@ -11,25 +11,26 @@
 **Data Source:** https://www.kaggle.com/datasets/saurabhshahane/spotgen-music-dataset <br>
 **Python Speech Recognition Package:** https://realpython.com/python-speech-recognition/ <br>
 
-Installing SpeechRecognition
+**Installing SpeechRecognition**
 - Install SpeechRecognition from a terminal with pip
-  $ pip install SpeechRecognition
+  - $ pip install SpeechRecognition
 
-The Speech Recognizer Class
-The primary purpose of a Recognizer instance is, of course, to recognize speech. Each instance comes with a variety of settings and functionality for recognizing speech from an audio source.
-Create a Recognizer 
-$ r = sr.Recognizer()
+**The Speech Recognizer Class**
+- The primary purpose of a Recognizer instance is, of course, to recognize speech. Each instance comes with a variety of settings and functionality for recognizing speech from an audio source.
+- Create a Recognizer 
+  - $ r = sr.Recognizer()
 
-To Run the application
-Connect a microphone to the system. Type on terminal 
-% python music_search_by_speech.py
-Application starts and see on console -
-    "This script is running..."
-    "Say artist name to get song recommendations"
-Say artist's name in microphone clearly like 'Michael Jackson', 'Taylor Swift'
-The application search the artist and creates csv files for song recommendation if pass. The cvs files are in music_data directory.
-Prints "Could not understand audio.", if fails and iterates the search again for user input.
-The application terminates after 3 attempts, if no input from the user.
+**To Run the application**
+- Connect a microphone to the system. Type on terminal 
+  - % python music_search_by_speech.py
+- Application starts and see on console -
+  - "This script is running..."
+  - "Say artist name to get song recommendations"
+- Say artist's name in microphone clearly like 'Michael Jackson', 'Taylor Swift'
+  - The application search the artist and creates csv files for song recommendation if pass. 
+  - The cvs files will be stored in music_data directory.
+- Prints "Could not understand audio.", if fails and iterates the search again for user input.
+- The application terminates after 3 attempts, if no input from the user.
 
 
 
