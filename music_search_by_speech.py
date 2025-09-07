@@ -28,25 +28,23 @@ def read_data():
 def load_data(name):
     filtered_df = []
     df = read_data()
-    #
+    # variable to store the artist name match from data source
+    # If user input is Mike Jackson, the datasource match to Michael Jackson
     artistName_as_db = str
 
     df = df.drop_duplicates(subset=['uri'], keep='first')
     #add new column
     if(len(name) > 0):
         df['artists_name_lower'] = df['artists_name'].str.lower()
-        #df['artists_name'] = df['artists_name'].str.lower()
         row_count = len(df)
         #conduct fuzzy search for artist voice input with database (csv file)
         #match the artist name 
         #like if voice says 'Simon and Garfunkel', then match with 'Simon & Garfunkel' from csv file
         df, name, artistName_as_db = fuzzySearch(df, name, artistName_as_db)       
-        #a = fuzz.ratio(df['artists_name_lower'], name.lower())
         filtered_df = df[df['artists_name_lower'] == name.lower()]
-        print('filtered_df size', filtered_df)
+        #print('filtered_df size', filtered_df)
         df['genres'] = df.genres.apply(lambda x: [i[1:-1] for i in str(x)[1:-1].split(", ")])
     exploded_track_df = df.explode("genres")
-    #print('filtered_df.genres ', len(filtered_df))
     
     return exploded_track_df, filtered_df, artistName_as_db
 
@@ -55,30 +53,17 @@ def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, arti
     # The artist given
     if(len(artist_select) > 0):
         print('The artist given: ', artistName_as_db)
-        print('filtered_df.genres: ', filtered_df.genres)
         print('The found in csv files: ')
         #find the duplicate ganre in all rows and select the max one
         genre = find_highest_duplicate(filtered_df.genres)
+        print('genre111 ', genre)
         #get the genre string value
         genre = get_artist_genre(genre)
+        print('genre222 ', genre)
         print('The genre of the given artist: ', genre)
         print('The start year: ', min(filtered_df.release_year))
-        print('The end year: ', max(filtered_df.release_year))
-        #test_feat = [acousticness, danceability, energy, instrumentalness, valence, tempo]
-        print('The acousticness: ', min(filtered_df.acousticness))
-        print('The acousticness: ', max(filtered_df.acousticness))
-        print('The danceability: ', min(filtered_df.danceability))
-        print('The danceability: ', max(filtered_df.danceability))
-        print('The energy: ', min(filtered_df.energy))
-        print('The energy: ', max(filtered_df.energy))
-        print('The instrumentalness: ', min(filtered_df.instrumentalness))
-        print('The instrumentalness: ', max(filtered_df.instrumentalness))
-        print('The valence: ', min(filtered_df.valence))
-        print('The valence: ', max(filtered_df.valence))
-        print('The tempo: ', min(filtered_df.tempo))
-        print('The tempo: ', max(filtered_df.tempo))
+        print('The end year: ', max(filtered_df.release_year))       
 
-    #print('nnnnn ', filtered_df.release_year)
     if(len(artist_select) == 0):
         genre_data = exploded_track_df[(exploded_track_df["genres"]==genre) & (exploded_track_df["release_year"]>=start_year) & (exploded_track_df["release_year"]<=end_year)]
     else:
@@ -92,8 +77,7 @@ def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, arti
         valence = (max(filtered_df.valence) - min(filtered_df.valence))/2
         tempo = (max(filtered_df.tempo) - min(filtered_df.tempo))/2
         test_feat = [acousticness, danceability, energy, instrumentalness, valence, tempo]
-    genre_data = genre_data.sort_values(by='popularity', ascending=False)[:50] # use only top 500 most popular songs
-    print(len(genre_data))
+    genre_data = genre_data.sort_values(by='popularity', ascending=False)[:500] # use only top 500 most popular songs
     neigh = NearestNeighbors()
     neigh.fit(genre_data[audio_feats].to_numpy())
     
@@ -106,64 +90,44 @@ def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, arti
     artist_info = [genre_data.iloc[n_neighbors]['artists_id'].to_numpy(), genre_data.iloc[n_neighbors]['artists_name'].to_numpy()]
     uris = genre_data.iloc[n_neighbors]["uri"].tolist()
     audios = genre_data.iloc[n_neighbors][audio_feats].to_numpy()
-    #print('Artists set before removing the given artist from the list: ', len(artists_id), len(artists_name))
 
     if(len(artist_select) > 0):    
         liRecommend_Artist = [] 
         liSelect_Artist = []
-        #print(artists_name, artistName_as_db)
-        #indices_to_remove = np.where(artists_name_lower == 'america')
+        #Remove user input arists songs from the list
         indices_to_remove = np.where(genre_data['artists_name_lower'] == artistName_as_db)
+        #Remove all other arists songs and keep only user input arists songs
         indices_to_remain = np.where(genre_data['artists_name_lower'] != artistName_as_db)
 
-        #print(indices_to_remove)
         uris = np.delete(uris, indices_to_remove)
         audios = np.delete(audios, indices_to_remove)
         artists_id = np.delete(artists_id, indices_to_remove)
         artists_name = np.delete(artists_name, indices_to_remove)
         artist_info = np.delete(artist_info, indices_to_remove)
-        #print('After remove the entries from the list: ', len(artists_id), len(artists_name))
 
+        #genre_data_new is for to filter out artists songs.
+        #genre_data is for to filter out recommended artists songs.
         genre_data_new = genre_data
-        #print(genre_data)
-        #print(indices_to_remove)
         indices_to_remove = str(indices_to_remove)[8:-4]
-        #print(indices_to_remove)
-        #print('Before ', len(genre_data))
-       
+         
         indices_to_remove = indices_to_remove.split(',')
         for iRemove in indices_to_remove:
             i = int(iRemove.strip())
-            #print(genre_data.index[i])
             liRecommend_Artist.append(genre_data.index[i])
         for iRemove in liRecommend_Artist:
-            #i = int(iRemove.strip())
-            #print('TTTT ', iRemove)
-            genre_data = genre_data.drop(iRemove)
-            #print('After ', len(genre_data))
-            #genre_data = liRecommend_Artist
-        #print('After ', len(genre_data))
-
-        #print(indices_to_remain)
+             genre_data = genre_data.drop(iRemove)
+       
         indices_to_remain = str(indices_to_remain)[8:-4]
         indices_to_remain = indices_to_remain.split(',')
-        #print(indices_to_remain)
         for iRemove in indices_to_remain:
             i = int(iRemove.strip())
-            #print(genre_data_new.index[i])
             liSelect_Artist.append(genre_data_new.index[i])
         for iRemove in liSelect_Artist:
-            #i = int(iRemove.strip())
-            #print('VVVVV ', iRemove)
             genre_data_new = genre_data_new.drop(iRemove)
-            #print('After ', len(genre_data))
-            #genre_data = liRecommend_Artist
-        #print('After ', len(genre_data_new))
-
+ 
     return genre, genre_data, genre_data_new, uris, audios, artists_id, artists_name, artist_info
 
 def getSongInfo(exploded_track_df, filtered_df, artistName, artistName_as_db):
-    print('mmmm ', artistName)
     if(len(filtered_df) > 0):
         start_year = 1960
         end_year = 2000
@@ -175,7 +139,7 @@ def getSongInfo(exploded_track_df, filtered_df, artistName, artistName_as_db):
           
 if __name__ == '__main__':
     #counter to terminate after no input from user after 3 attempts
-    count = 0;
+    count = 1;
 
     while True:
         # Your code to be executed repeatedly goes here
@@ -195,8 +159,8 @@ if __name__ == '__main__':
         else:
             print("Could not understand input audio.")
             count += 1 
-            print(count)
-            if(count == 3):
+            print('The application try for 3 attempts and terminates. Attempt number: ', count)
+            if(count == 4):
                 print("No input detected. Terminating the program.")
                 break
             

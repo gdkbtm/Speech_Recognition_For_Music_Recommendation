@@ -1,41 +1,490 @@
 artists_name,name,genres,release_year,popularity
-John Denver,"Take Me Home, Country Roads - Rerecorded",folk,1997.0,80.0
-America,A Horse with No Name,folk,1972.0,78.0
-Buffalo Springfield,For What It's Worth,folk,1966.0,76.0
-Paul Simon,You Can Call Me Al,folk,1986.0,76.0
-Carly Simon,You're so Vain,folk,1972.0,76.0
-Bob Dylan,Knockin' On Heaven's Door - Remastered,folk,1973.0,74.0
-James Taylor,Fire and Rain,folk,1970.0,73.0
-Bob Dylan,Like a Rolling Stone,folk,1965.0,72.0
-Seals and Crofts,Summer Breeze,folk,1972.0,71.0
-Paul Simon,Me and Julio Down by the Schoolyard,folk,1972.0,71.0
-Joni Mitchell,Big Yellow Taxi,folk,1970.0,70.0
-Bob Dylan,The Times They Are A-Changin',folk,1964.0,70.0
-America,Ventura Highway,folk,1972.0,70.0
-Bread,Everything I Own,folk,1972.0,69.0
-The Byrds,Turn! Turn! Turn! (To Everything There Is a Season),folk,1965.0,69.0
-Paul Simon,50 Ways to Leave Your Lover,folk,1975.0,69.0
-Jackson Browne,Running on Empty,folk,1977.0,69.0
-Gerry Rafferty,Baker Street,folk,1978.0,68.0
-Van Morrison,Have I Told You Lately,folk,1989.0,68.0
-"Crosby, Stills & Nash",Helplessly Hoping,folk,1969.0,68.0
-James Taylor,Carolina in My Mind,folk,1976.0,67.0
-Joni Mitchell,A Case of You,folk,1971.0,67.0
-Carole King,It's Too Late,folk,1971.0,67.0
-America,Sister Golden Hair,folk,1975.0,67.0
-Carole King,I Feel the Earth Move,folk,1971.0,67.0
-"Crosby, Stills, Nash & Young",Our House,folk,1970.0,67.0
-James Taylor,You've Got a Friend,folk,1971.0,67.0
-Gerry Rafferty,Right Down the Line,folk,1978.0,67.0
-John Denver,Annie's Song,folk,1974.0,66.0
-Leonard Cohen,Suzanne,folk,1967.0,66.0
-Carole King,You've Got a Friend,folk,1971.0,66.0
-"Crosby, Stills & Nash",Suite: Judy Blue Eyes - Remastered,folk,1969.0,66.0
-Bob Dylan,Mr. Tambourine Man,folk,1965.0,65.0
-Pretenders,Don't Get Me Wrong - 2007 Remastered Version,folk,1986.0,65.0
-Leonard Cohen,Hallelujah,folk,1984.0,65.0
-Harry Chapin,Cat's in the Cradle,folk,1974.0,65.0
-The Hollies,Long Cool Woman (In a Black Dress) - 1999 Remaster,folk,1971.0,64.0
-Paul Simon,Graceland,folk,1986.0,64.0
-Carole King,Bitter With The Sweet,folk,1968.0,64.0
-Joni Mitchell,California,folk,1971.0,64.0
+Arctic Monkeys,Do I Wanna Know?,rock,2013.0,84.0
+Foster The People,Pumped Up Kicks,rock,2011.0,84.0
+Twenty One Pilots,Stressed Out,rock,2015.0,84.0
+Twenty One Pilots,Chlorine,rock,2018.0,83.0
+Eagles,Hotel California - Eagles 2013 Remaster,rock,1976.0,83.0
+Red Hot Chili Peppers,Under The Bridge,rock,1991.0,83.0
+Twenty One Pilots,Ride,rock,2015.0,83.0
+Radiohead,Creep,rock,1993.0,82.0
+Red Hot Chili Peppers,Californication,rock,1999.0,82.0
+AC/DC,Thunderstruck,rock,1990.0,82.0
+Twenty One Pilots,Heathens,rock,2016.0,82.0
+Red Hot Chili Peppers,Can't Stop,rock,2002.0,82.0
+Electric Light Orchestra,Mr. Blue Sky,rock,1977.0,82.0
+System Of A Down,Chop Suey!,rock,2001.0,81.0
+Green Day,Basket Case,rock,1994.0,81.0
+Kings of Leon,Sex on Fire,rock,2008.0,81.0
+Gorillaz,Feel Good Inc,rock,2005.0,81.0
+Oasis,Wonderwall - Remastered,rock,1995.0,81.0
+Red Hot Chili Peppers,Snow (Hey Oh),rock,2006.0,80.0
+Twenty One Pilots,My Blood,rock,2018.0,80.0
+Daryl Hall & John Oates,You Make My Dreams,rock,1980.0,80.0
+The Goo Goo Dolls,Iris,rock,2007.0,79.0
+Red Hot Chili Peppers,Otherside,rock,1999.0,79.0
+Billy Joel,Uptown Girl,rock,1983.0,79.0
+Rage Against The Machine,Killing In The Name,rock,1992.0,79.0
+Arctic Monkeys,R U Mine?,rock,2013.0,79.0
+System Of A Down,Toxicity,rock,2001.0,79.0
+America,A Horse with No Name,rock,1972.0,78.0
+Twenty One Pilots,Jumpsuit,rock,2018.0,78.0
+Green Day,American Idiot,rock,2004.0,78.0
+Aerosmith,I Don't Want to Miss a Thing,rock,1998.0,78.0
+Pearl Jam,Alive,rock,1991.0,78.0
+The Goo Goo Dolls,Iris,rock,1998.0,78.0
+Foo Fighters,Everlong,rock,1997.0,78.0
+Kings of Leon,Use Somebody,rock,2008.0,78.0
+Red Hot Chili Peppers,Scar Tissue,rock,1999.0,78.0
+MGMT,Kids,rock,2007.0,77.0
+Green Day,Good Riddance (Time of Your Life),rock,1997.0,77.0
+Jet,Are You Gonna Be My Girl,rock,2003.0,77.0
+Twenty One Pilots,Morph,rock,2018.0,77.0
+Red Hot Chili Peppers,Dani California,rock,2006.0,77.0
+Foo Fighters,The Pretender,rock,2007.0,77.0
+Blur,Song 2 - 2012 Remastered Version,rock,1997.0,77.0
+Green Day,Wake Me up When September Ends,rock,2004.0,77.0
+Muse,Uprising,rock,2009.0,77.0
+Arctic Monkeys,Fluorescent Adolescent,rock,2007.0,77.0
+MGMT,Electric Feel,rock,2007.0,77.0
+Buffalo Springfield,For What It's Worth,rock,1966.0,76.0
+Third Eye Blind,Semi-Charmed Life,rock,1997.0,76.0
+Foster The People,Sit Next to Me,rock,2017.0,76.0
+System Of A Down,B.Y.O.B.,rock,2005.0,76.0
+Twenty One Pilots,Car Radio,rock,2013.0,76.0
+Red Hot Chili Peppers,Dark Necessities,rock,2016.0,76.0
+Radiohead,Karma Police,rock,1997.0,76.0
+Franz Ferdinand,Take Me Out,rock,2004.0,76.0
+Audioslave,Like a Stone,rock,2002.0,76.0
+Eagles,Take It Easy - 2013 Remaster,rock,1972.0,76.0
+Paul Simon,You Can Call Me Al,rock,1986.0,76.0
+Pearl Jam,Black,rock,1991.0,76.0
+Slipknot,Duality,rock,2004.0,76.0
+Foo Fighters,Learn to Fly,rock,1999.0,76.0
+The White Stripes,Seven Nation Army,rock,2003.0,76.0
+Red Hot Chili Peppers,By The Way,rock,2002.0,76.0
+Green Day,When I Come Around,rock,1994.0,76.0
+Journey,Don't Stop Believin',rock,2001.0,76.0
+Pearl Jam,Even Flow,rock,1991.0,76.0
+Simon & Garfunkel,Mrs. Robinson,rock,1968.0,76.0
+Green Day,Boulevard of Broken Dreams,rock,2017.0,75.0
+Eric Clapton,Tears In Heaven,rock,1992.0,75.0
+Men At Work,Down Under,rock,1996.0,75.0
+Green Day,21 Guns,rock,2009.0,75.0
+The Black Keys,Lo/Hi,rock,2019.0,75.0
+Oasis,Wonderwall,rock,1995.0,75.0
+Muse,Supermassive Black Hole,rock,2006.0,75.0
+Twenty One Pilots,Tear in My Heart,rock,2015.0,75.0
+Gorillaz,On Melancholy Hill,rock,2010.0,75.0
+The Doobie Brothers,Listen to the Music,rock,1972.0,75.0
+Slipknot,Before I Forget,rock,2004.0,75.0
+Foo Fighters,Best of You,rock,2005.0,75.0
+Daryl Hall & John Oates,Maneater,rock,1982.0,75.0
+Gorillaz,Clint Eastwood,rock,2001.0,75.0
+Arctic Monkeys,Arabella,rock,2013.0,75.0
+Aerosmith,"I Don't Want to Miss a Thing - From the Touchstone film, ""Armageddon""",rock,1997.0,75.0
+Radiohead,High And Dry,rock,1995.0,74.0
+Incubus,Drive,rock,1999.0,74.0
+AWOLNATION,Sail,rock,2013.0,74.0
+The Monkees,I'm a Believer - 2006 Remaster,rock,1967.0,74.0
+Arctic Monkeys,Snap Out Of It,rock,2013.0,74.0
+Cage The Elephant,Ready To Let Go,rock,2019.0,74.0
+Pearl Jam,Jeremy,rock,1991.0,74.0
+Billy Joel,Piano Man,rock,2001.0,74.0
+Oasis,Wonderwall - Remastered,rock,1995.0,74.0
+Chicago,If You Leave Me Now - Remastered,rock,1976.0,74.0
+Rage Against The Machine,Bulls On Parade,rock,1996.0,74.0
+System Of A Down,Aerials,rock,2001.0,74.0
+Arctic Monkeys,I Bet You Look Good On The Dancefloor,rock,2006.0,74.0
+Bob Dylan,Knockin' On Heaven's Door - Remastered,rock,1973.0,74.0
+New Order,Blue Monday - 2016 Remastered Version,rock,2005.0,74.0
+Metallica,Enter Sandman,rock,1991.0,74.0
+Muse,Starlight,rock,2006.0,74.0
+Slipknot,All Out Life,rock,2018.0,74.0
+Oasis,Don't Look Back in Anger - Remastered,rock,1995.0,74.0
+Red Hot Chili Peppers,Give It Away,rock,1991.0,74.0
+Twenty One Pilots,Heavydirtysoul,rock,2015.0,74.0
+Pantera,Walk,rock,1992.0,73.0
+Franz Ferdinand,Take Me Out,rock,2004.0,73.0
+Stone Sour,Through Glass,rock,2006.0,73.0
+Stone Temple Pilots,Interstate Love Song,rock,1994.0,73.0
+Spin Doctors,Two Princes,rock,1991.0,73.0
+The Black Keys,Lonely Boy,rock,2011.0,73.0
+The Animals,The House Of The Rising Sun,rock,1987.0,73.0
+Bring Me The Horizon,in the dark,rock,2019.0,73.0
+Muse,Pressure,rock,2018.0,73.0
+Bring Me The Horizon,medicine,rock,2019.0,73.0
+Foals,My Number,rock,2013.0,73.0
+The Doobie Brothers,Long Train Runnin',rock,1973.0,73.0
+Eagles,Life in the Fast Lane - Eagles 2013 Remaster,rock,1976.0,73.0
+Talking Heads,Psycho Killer - 2005 Remastered Version,rock,1977.0,73.0
+System Of A Down,Lonely Day,rock,2005.0,73.0
+Mr. Big,To Be With You - 2010 Remastered Version,rock,1991.0,73.0
+Slipknot,Psychosocial,rock,2008.0,73.0
+REO Speedwagon,Can't Fight This Feeling,rock,1984.0,73.0
+Supergrass,Alright,rock,1995.0,73.0
+Chicago,You're the Inspiration - 2006 Remaster,rock,1984.0,73.0
+Arctic Monkeys,Mardy Bum,rock,2006.0,73.0
+Kid Rock,All Summer Long,rock,2007.0,73.0
+Billy Joel,She's Always a Woman,rock,1977.0,73.0
+James Taylor,Fire and Rain,rock,1970.0,73.0
+Korn,Freak On a Leash,rock,1998.0,73.0
+Jeff Buckley,Hallelujah,rock,1994.0,73.0
+Foo Fighters,All My Life,rock,2002.0,73.0
+Bring Me The Horizon,sugar honey ice & tea,rock,2019.0,72.0
+Radiohead,Fake Plastic Trees,rock,1995.0,72.0
+Tom Petty and the Heartbreakers,American Girl,rock,1976.0,72.0
+Alice In Chains,Would?,rock,1992.0,72.0
+Joy Division,Love Will Tear Us Apart,rock,2008.0,72.0
+Cage The Elephant,Cigarette Daydreams,rock,2013.0,72.0
+Two Door Cinema Club,What You Know,rock,2010.0,72.0
+Muse,Madness,rock,2012.0,72.0
+The Strokes,Last Nite,rock,2001.0,72.0
+Alice In Chains,Man in the Box,rock,1990.0,72.0
+Kenny Loggins,Footloose,rock,2002.0,72.0
+Radiohead,No Surprises,rock,1997.0,72.0
+Kenny Loggins,Danger Zone,rock,1997.0,72.0
+Bring Me The Horizon,MANTRA,rock,2018.0,72.0
+Cage The Elephant,Trouble,rock,2015.0,72.0
+Bring Me The Horizon,mother tongue,rock,2019.0,72.0
+Bob Dylan,Like a Rolling Stone,rock,1965.0,72.0
+Daryl Hall & John Oates,Rich Girl - Remastered,rock,2005.0,72.0
+MGMT,Time to Pretend,rock,2007.0,72.0
+Foo Fighters,Everlong - Acoustic Version,rock,2009.0,72.0
+Slipknot,The Devil In I,rock,2014.0,72.0
+Journey,Don't Stop Believin',rock,2010.0,72.0
+Scorpions,Still Loving You,rock,2011.0,72.0
+Billy Joel,We Didn't Start the Fire,rock,1989.0,72.0
+The Kinks,You Really Got Me - Mono Mix,rock,1964.0,72.0
+Audioslave,Show Me How to Live,rock,2002.0,72.0
+Duran Duran,Ordinary World,rock,1993.0,72.0
+Bring Me The Horizon,medicine,rock,2019.0,72.0
+Green Day,Holiday / Boulevard of Broken Dreams,rock,2004.0,72.0
+Bring Me The Horizon,MANTRA,rock,2019.0,71.0
+Paul Simon,Me and Julio Down by the Schoolyard,rock,1972.0,71.0
+Neil Young,Harvest Moon,rock,1992.0,71.0
+Pantera,Cowboys From Hell,rock,1990.0,71.0
+Foals,In Degrees,rock,2019.0,71.0
+REO Speedwagon,Keep on Loving You - Remastered,rock,1980.0,71.0
+Seals and Crofts,Summer Breeze,rock,1972.0,71.0
+Electric Light Orchestra,Livin' Thing,rock,1976.0,71.0
+Simon & Garfunkel,The Boxer,rock,1970.0,71.0
+Billy Joel,Uptown Girl,rock,2001.0,71.0
+The Cars,Drive,rock,1984.0,71.0
+Oasis,Don't Look Back In Anger,rock,1995.0,71.0
+Twenty One Pilots,Holding On To You,rock,2013.0,71.0
+Billy Joel,Piano Man,rock,1973.0,71.0
+Chevelle,The Red,rock,2002.0,71.0
+Green Day,Boulevard of Broken Dreams,rock,2004.0,71.0
+Soul Asylum,Runaway Train,rock,1992.0,71.0
+Eric Clapton,Layla,rock,1992.0,71.0
+Royal Blood,Figure It Out,rock,2014.0,71.0
+Rage Against The Machine,Guerrilla Radio,rock,1999.0,71.0
+The Strokes,Reptilia,rock,2003.0,71.0
+Billy Joel,Piano Man,rock,1973.0,71.0
+Korn,Falling Away from Me,rock,1999.0,71.0
+Metallica,Nothing Else Matters,rock,1991.0,71.0
+Korn,Coming Undone,rock,2005.0,71.0
+Foo Fighters,My Hero,rock,1997.0,70.0
+AWOLNATION,Sail,rock,2011.0,70.0
+Slipknot,Snuff,rock,2008.0,70.0
+Daryl Hall & John Oates,You Make My Dreams - Remastered,rock,2001.0,70.0
+Foster The People,Houdini,rock,2011.0,70.0
+The Goo Goo Dolls,Slide,rock,1998.0,70.0
+Muse,Psycho,rock,2015.0,70.0
+Twenty One Pilots,Goner,rock,2015.0,70.0
+Weezer,Take On Me,rock,2019.0,70.0
+Foo Fighters,The Sky Is A Neighborhood,rock,2017.0,70.0
+The Black Keys,Gold on the Ceiling,rock,2011.0,70.0
+Faces,Ooh La La - 2015 Remastered Version,rock,2005.0,70.0
+The Police,Every Breath You Take,rock,2017.0,70.0
+The Strokes,Last Nite,rock,2001.0,70.0
+Blur,Girls and Boys,rock,2000.0,70.0
+Pearl Jam,Yellow Ledbetter,rock,1991.0,70.0
+The Black Keys,Howlin' For You,rock,2010.0,70.0
+Oasis,Stand by Me,rock,1997.0,70.0
+The Bangles,Eternal Flame,rock,2004.0,70.0
+The Vaccines,All My Friends Are Falling In Love,rock,2018.0,70.0
+Hootie & The Blowfish,Only Wanna Be with You,rock,1994.0,70.0
+Quiet Riot,Cum on Feel the Noize,rock,1996.0,70.0
+Simon & Garfunkel,Bridge Over Troubled Water,rock,1970.0,70.0
+Iron Maiden,Fear of the Dark - 2015 Remaster,rock,1992.0,70.0
+AC/DC,Thunderstruck,rock,2010.0,70.0
+Joni Mitchell,Big Yellow Taxi,rock,1970.0,70.0
+The Clash,Should I Stay or Should I Go - Remastered,rock,2013.0,70.0
+Eagles,One of These Nights - Eagles 2013 Remaster,rock,1975.0,70.0
+Bob Dylan,The Times They Are A-Changin',rock,1964.0,70.0
+America,Ventura Highway,rock,1972.0,70.0
+Slipknot,Wait and Bleed,rock,2009.0,70.0
+Jefferson Airplane,White Rabbit,rock,1967.0,70.0
+Simon & Garfunkel,The Sound of Silence,rock,1968.0,70.0
+Talking Heads,This Must Be The Place (Naive Melody) - 2005 Remastered Version,rock,1983.0,70.0
+The Darkness,I Believe in a Thing Called Love,rock,2003.0,70.0
+Roy Orbison,You Got It,rock,1989.0,69.0
+Jackson Browne,Running on Empty,rock,1977.0,69.0
+Paul Simon,50 Ways to Leave Your Lover,rock,1975.0,69.0
+The Cars,Just What I Needed,rock,1978.0,69.0
+Foo Fighters,Monkey Wrench,rock,1997.0,69.0
+Deftones,Change (In the House of Flies) - In The House Of Flies LP Version,rock,2000.0,69.0
+Jefferson Airplane,Somebody to Love,rock,1967.0,69.0
+Arcade Fire,Everything Now,rock,2017.0,69.0
+Korn,Got the Life,rock,1998.0,69.0
+Foals,Mountain At My Gates,rock,2015.0,69.0
+The Marshall Tucker Band,Can't You See,rock,1973.0,69.0
+Red Hot Chili Peppers,Snow (Hey Oh),rock,2006.0,69.0
+Bring Me The Horizon,Throne,rock,2015.0,69.0
+Green Day,Welcome to Paradise,rock,1994.0,69.0
+Bring Me The Horizon,i apologise if you feel something,rock,2019.0,69.0
+The Romantics,What I Like About You,rock,1990.0,69.0
+Muse,Hysteria,rock,2004.0,69.0
+The Presidents Of The United States Of America,Lump,rock,1995.0,69.0
+Rick Springfield,Jessie's Girl,rock,1999.0,69.0
+The Strokes,Someday,rock,2001.0,69.0
+Joe Walsh,Life's Been Good,rock,1978.0,69.0
+The Animals,The House of the Rising Sun,rock,1992.0,69.0
+Talking Heads,Once In A Lifetime - 2005 Remastered Version,rock,1980.0,69.0
+The Byrds,Turn! Turn! Turn! (To Everything There Is a Season),rock,1965.0,69.0
+Twenty One Pilots,Trees,rock,2013.0,69.0
+Pearl Jam,Daughter (Remastered),rock,1993.0,69.0
+Gorillaz,Clint Eastwood,rock,2001.0,69.0
+Pixies,Where Is My Mind?,rock,1997.0,69.0
+Simon & Garfunkel,Cecilia,rock,1970.0,69.0
+The Doobie Brothers,What A Fool Believes,rock,1978.0,69.0
+Twenty One Pilots,The Run And Go,rock,2013.0,69.0
+Cage The Elephant,Cold Cold Cold,rock,2015.0,69.0
+Electric Light Orchestra,Don't Bring Me Down,rock,1979.0,69.0
+System Of A Down,Hypnotize,rock,2005.0,69.0
+Alice In Chains,Rooster,rock,1992.0,69.0
+Stone Temple Pilots,Plush - Acoustic,rock,2003.0,69.0
+The White Stripes,Icky Thump,rock,2007.0,69.0
+Foster The People,Worst Nites,rock,2018.0,68.0
+The Black Keys,Howlin' For You,rock,2010.0,68.0
+"Crosby, Stills & Nash",Helplessly Hoping,rock,1969.0,68.0
+Arctic Monkeys,One For The Road,rock,2013.0,68.0
+Red Hot Chili Peppers,The Adventures Of Rain Dance Maggie,rock,2011.0,68.0
+Collective Soul,Shine,rock,1994.0,68.0
+The Zombies,Time Of The Season (Mono Version),rock,1968.0,68.0
+The Monkees,Daydream Believer,rock,1968.0,68.0
+Van Morrison,Have I Told You Lately,rock,1989.0,68.0
+Arcade Fire,Wake Up,rock,2004.0,68.0
+Twenty One Pilots,Chlorine - Alt Mix,rock,2019.0,68.0
+The Strokes,Under Cover of Darkness,rock,2011.0,68.0
+Gerry Rafferty,Baker Street,rock,1978.0,68.0
+Radiohead,Paranoid Android,rock,1997.0,68.0
+Kings of Leon,Waste A Moment,rock,2016.0,68.0
+Rage Against The Machine,Testify,rock,1999.0,68.0
+311,Amber,rock,2004.0,68.0
+Ram Jam,Black Betty,rock,1990.0,68.0
+System Of A Down,Chop Suey!,rock,2001.0,68.0
+The Kinks,Lola - Coca Cola Version,rock,1970.0,68.0
+The Cranberries,Zombie - Acoustic Version,rock,2017.0,68.0
+Pearl Jam,Better Man - Remastered,rock,1994.0,68.0
+Radiohead,Weird Fishes/ Arpeggi,rock,2007.0,68.0
+Placebo,Every You Every Me,rock,1998.0,68.0
+Stone Sour,Absolute Zero,rock,2012.0,68.0
+Simon & Garfunkel,The Sounds of Silence - Acoustic Version,rock,1964.0,68.0
+Bad Company,Feel Like Makin' Love - 2015 Remastered Version,rock,1975.0,68.0
+Two Door Cinema Club,What You Know,rock,2010.0,68.0
+Red Hot Chili Peppers,Under The Bridge,rock,2003.0,68.0
+The Cure,Friday I'm in Love,rock,1992.0,68.0
+The Goo Goo Dolls,Name,rock,1995.0,68.0
+AC/DC,Rock N Roll Train,rock,2008.0,68.0
+Collective Soul,The World I Know,rock,1995.0,68.0
+System Of A Down,Radio/Video,rock,2005.0,68.0
+Ozzy Osbourne,"Mama, I'm Coming Home",rock,1991.0,68.0
+Stevie Nicks,Edge of Seventeen,rock,2007.0,68.0
+Scorpions,Rock You Like a Hurricane,rock,2011.0,68.0
+Tom Petty,Wildflowers,rock,1994.0,68.0
+Arcade Fire,The Suburbs,rock,2010.0,68.0
+Slipknot,Psychosocial,rock,2008.0,68.0
+Bring Me The Horizon,Follow You,rock,2015.0,68.0
+The Wombats,Let's Dance To Joy Division,rock,2007.0,68.0
+Audioslave,Cochise,rock,2002.0,68.0
+Third Eye Blind,How's It Going to Be,rock,1997.0,68.0
+Daryl Hall & John Oates,Rich Girl,rock,1976.0,68.0
+Alice In Chains,Nutshell,rock,1994.0,68.0
+Eric Clapton,Change the World,rock,1999.0,67.0
+Bring Me The Horizon,Happy Song,rock,2015.0,67.0
+Foals,On The Luna,rock,2019.0,67.0
+Warrant,Cherry Pie,rock,1990.0,67.0
+The Guess Who,American Woman - Remastered,rock,2000.0,67.0
+The Doobie Brothers,China Grove,rock,1973.0,67.0
+Bring Me The Horizon,Drown - New,rock,2015.0,67.0
+Audioslave,I Am the Highway,rock,2002.0,67.0
+Foals,White Onions,rock,2019.0,67.0
+Gorillaz,Tranz,rock,2018.0,67.0
+Eddie Money,Two Tickets to Paradise,rock,1977.0,67.0
+Red Hot Chili Peppers,Sick Love,rock,2016.0,67.0
+James Taylor,Carolina in My Mind,rock,1976.0,67.0
+The Coral,Dreaming of You,rock,2002.0,67.0
+Arctic Monkeys,Teddy Picker,rock,2007.0,67.0
+Twenty One Pilots,Fake You Out,rock,2013.0,67.0
+Oasis,Champagne Supernova - Remastered,rock,1995.0,67.0
+Arctic Monkeys,Fluorescent Adolescent,rock,2007.0,67.0
+Cage The Elephant,House Of Glass,rock,2019.0,67.0
+Arctic Monkeys,Four Out Of Five,rock,2018.0,67.0
+Carole King,I Feel the Earth Move,rock,1971.0,67.0
+Sundara Karma,Flame,rock,2016.0,67.0
+The Wombats,Turn,rock,2018.0,67.0
+America,Sister Golden Hair,rock,1975.0,67.0
+Bring Me The Horizon,True Friends,rock,2015.0,67.0
+Queens of the Stone Age,The Way You Used to Do,rock,2017.0,67.0
+Sly & The Family Stone,Everyday People,rock,1999.0,67.0
+Gerry Rafferty,Right Down the Line,rock,1978.0,67.0
+"Crosby, Stills, Nash & Young",Our House,rock,1970.0,67.0
+Stone Sour,Song #3,rock,2017.0,67.0
+Arctic Monkeys,Brianstorm,rock,2007.0,67.0
+James Taylor,You've Got a Friend,rock,1971.0,67.0
+Stone Sour,Bother,rock,2002.0,67.0
+Foals,On The Luna,rock,2019.0,67.0
+Incubus,Pardon Me,rock,1999.0,67.0
+The Wombats,Cheetah Tongue,rock,2018.0,67.0
+Bush,Glycerine,rock,2014.0,67.0
+Duran Duran,Come Undone,rock,1993.0,67.0
+Joni Mitchell,A Case of You,rock,1971.0,67.0
+The Yardbirds,Heart Full of Soul,rock,2002.0,67.0
+Rod Stewart,All for Love,rock,1996.0,67.0
+Billy Joel,Just the Way You Are,rock,1977.0,67.0
+Rage Against The Machine,Renegades Of Funk,rock,2000.0,67.0
+Carole King,It's Too Late,rock,1971.0,67.0
+The Strokes,You Only Live Once,rock,2006.0,67.0
+Broken Bells,The High Road,rock,2010.0,67.0
+Red Hot Chili Peppers,Road Trippin',rock,1999.0,66.0
+Staind,It's Been Awhile,rock,2001.0,66.0
+Arctic Monkeys,Four Out Of Five,rock,2018.0,66.0
+Ozzy Osbourne,No More Tears,rock,1991.0,66.0
+Blur,Song 2,rock,2000.0,66.0
+Foals,Sunday,rock,2019.0,66.0
+Weezer,I’m Just Being Honest,rock,2019.0,66.0
+The Vaccines,If You Wanna,rock,2011.0,66.0
+Slipknot,Spit It Out,rock,2009.0,66.0
+Stone Temple Pilots,Plush,rock,1992.0,66.0
+Toto,Africa,rock,2015.0,66.0
+Arcade Fire,Rebellion (Lies),rock,2004.0,66.0
+Deftones,My Own Summer (Shove It),rock,1997.0,66.0
+Eddie Money,Take Me Home Tonight,rock,1986.0,66.0
+Cake,The Distance,rock,1996.0,66.0
+The Wombats,Moving To New York,rock,2007.0,66.0
+"Crosby, Stills & Nash",Suite: Judy Blue Eyes - Remastered,rock,1969.0,66.0
+The Raconteurs,Now That You're Gone,rock,2018.0,66.0
+The Libertines,Can't Stand Me Now,rock,2004.0,66.0
+Lamb of God,Laid to Rest,rock,2004.0,66.0
+Mike & The Mechanics,Over My Shoulder,rock,1995.0,66.0
+The Raconteurs,"Steady, As She Goes",rock,2006.0,66.0
+Red Hot Chili Peppers,Go Robot,rock,2016.0,66.0
+The Black Keys,Howlin' For You,rock,2010.0,66.0
+Faces,Ooh La La,rock,1973.0,66.0
+The Clash,I Fought the Law,rock,2013.0,66.0
+MGMT,Little Dark Age,rock,2018.0,66.0
+Bring Me The Horizon,Avalanche,rock,2015.0,66.0
+Bring Me The Horizon,Throne,rock,2015.0,66.0
+Daryl Hall & John Oates,Sara Smile,rock,1975.0,66.0
+Pantera,Cemetery Gates,rock,1990.0,66.0
+Weezer,No Scrubs,rock,2019.0,66.0
+Tom Petty and the Heartbreakers,Breakdown,rock,1976.0,66.0
+Rival Sons,Do Your Worst,rock,2018.0,66.0
+Tenacious D,Tribute,rock,2001.0,66.0
+Faith No More,Easy,rock,1992.0,66.0
+Incubus,Drive,rock,1999.0,66.0
+Green Day,Longview,rock,1994.0,66.0
+Eagles,Desperado - Eagles 2013 Remaster,rock,1973.0,66.0
+Kasabian,Fire,rock,2009.0,66.0
+Carole King,You've Got a Friend,rock,1971.0,66.0
+Foals,Syrups,rock,2019.0,66.0
+Foreigner,I Want to Know What Love Is - 2008 Remaster,rock,2008.0,66.0
+Spin Doctors,Two Princes,rock,1991.0,66.0
+Kings of Leon,Sex on Fire,rock,2008.0,66.0
+Tom Petty,You Don't Know How It Feels,rock,1994.0,66.0
+Red Hot Chili Peppers,Suck My Kiss,rock,1991.0,65.0
+Kansas,Carry on Wayward Son,rock,2010.0,65.0
+The Strokes,Someday,rock,2001.0,65.0
+Blur,Coffee And TV,rock,1998.0,65.0
+Bloc Party,Banquet,rock,2005.0,65.0
+Joy Division,Love Will Tear Us Apart - 2010 Remastered Version,rock,2010.0,65.0
+Interpol,Evil,rock,2004.0,65.0
+Two Door Cinema Club,Something Good Can Work,rock,2010.0,65.0
+Silverchair,Tomorrow - Remastered,rock,2015.0,65.0
+Pantera,I'm Broken,rock,1994.0,65.0
+Royal Blood,Lights Out,rock,2017.0,65.0
+Golden Earring,Radar Love,rock,2008.0,65.0
+Cake,Short Skirt / Long Jacket,rock,2001.0,65.0
+Foals,Exits,rock,2019.0,65.0
+The Bangles,Walk Like an Egyptian,rock,2004.0,65.0
+Nick Cave & The Bad Seeds,Into My Arms - 2011 Remastered Version,rock,1997.0,65.0
+Queens of the Stone Age,I Sat By The Ocean,rock,2013.0,65.0
+Oasis,Champagne Supernova - Remastered,rock,1995.0,65.0
+Rage Against The Machine,Bombtrack,rock,1992.0,65.0
+Chicago,Hard to Say I'm Sorry - 2007 Remaster,rock,2007.0,65.0
+The Strokes,Reptilia,rock,2003.0,65.0
+Journey,Any Way You Want It,rock,2001.0,65.0
+The Breeders,Cannonball,rock,1993.0,65.0
+Oasis,Live Forever - Remastered,rock,1994.0,65.0
+Mott The Hoople,All the Young Dudes,rock,1972.0,65.0
+The Kinks,Waterloo Sunset - Mono Mix,rock,1967.0,65.0
+Eagles,New Kid in Town - Eagles 2013 Remaster,rock,1976.0,65.0
+Judas Priest,Painkiller,rock,1990.0,65.0
+Radiohead,Everything In Its Right Place,rock,2000.0,65.0
+Simon & Garfunkel,The Only Living Boy in New York,rock,1970.0,65.0
+Ambrosia,Biggest Part of Me,rock,1980.0,65.0
+Oasis,Don't Look Back In Anger - Remastered,rock,1995.0,65.0
+The Strokes,Threat of Joy,rock,2016.0,65.0
+The Cars,Drive - Remastered,rock,1984.0,65.0
+Talking Heads,Burning Down The House (45 Version),rock,1983.0,65.0
+Arcade Fire,Put Your Money on Me,rock,2017.0,65.0
+Foals,Sunday,rock,2019.0,65.0
+Jethro Tull,Aqualung,rock,1971.0,65.0
+Lamb of God,Redneck,rock,2006.0,65.0
+Chevelle,Send the Pain Below,rock,2002.0,65.0
+Foo Fighters,Best of You,rock,2005.0,65.0
+Eagles,Peaceful Easy Feeling - Eagles 2013 Remaster,rock,1972.0,65.0
+Green Day,Still Breathing,rock,2016.0,65.0
+Bob Dylan,Mr. Tambourine Man,rock,1965.0,65.0
+White Lies,Tokyo,rock,2019.0,65.0
+Muse,Sunburn,rock,1999.0,65.0
+Simon & Garfunkel,Homeward Bound,rock,1966.0,65.0
+Fuel,Shimmer - Single Version,rock,2005.0,65.0
+Pretenders,Don't Get Me Wrong - 2007 Remastered Version,rock,1986.0,65.0
+The Goo Goo Dolls,Sympathy,rock,2002.0,65.0
+Yo La Tengo,I'll Be Around,rock,2013.0,65.0
+New Order,Blue Monday '88,rock,1994.0,65.0
+Simon & Garfunkel,America,rock,1968.0,65.0
+Simon & Garfunkel,Cecilia,rock,1972.0,65.0
+Muse,Plug In Baby,rock,2001.0,65.0
+Kasabian,Club Foot,rock,2004.0,64.0
+Royal Blood,Figure It Out,rock,2014.0,64.0
+Airbourne,Runnin' Wild,rock,2007.0,64.0
+Bob Dylan,Tangled up in Blue,rock,1975.0,64.0
+Kasabian,Underdog,rock,2009.0,64.0
+Ozzy Osbourne,Dreamer,rock,2001.0,64.0
+Paul Simon,Graceland,rock,1986.0,64.0
+Interpol,If You Really Love Nothing,rock,2018.0,64.0
+The Cars,My Best Friend's Girl,rock,1978.0,64.0
+Journey,Don't Stop Believin',rock,2018.0,64.0
+Alice In Chains,Them Bones,rock,1992.0,64.0
+Kings of Leon,WALLS,rock,2016.0,64.0
+Yeah Yeah Yeahs,Heads Will Roll (A-Trak Remix),rock,2010.0,64.0
+The Hollies,Long Cool Woman (In a Black Dress) - 1999 Remaster,rock,1971.0,64.0
+Linda Ronstadt,Blue Bayou,rock,1977.0,64.0
+The Cult,She Sells Sanctuary,rock,2000.0,64.0
+Gojira,Stranded,rock,2016.0,64.0
+Third Eye Blind,Never Let You Go - 2008 Version,rock,1999.0,64.0
+Liam Gallagher,Wall Of Glass,rock,2017.0,64.0
+Green Day,American Idiot,rock,2004.0,64.0
+Bring Me The Horizon,Can You Feel My Heart,rock,2013.0,64.0
+Sevendust,Denial,rock,2005.0,64.0
+Jim Croce,Time In a Bottle,rock,1972.0,64.0
+Eagles,Hotel California - Eagles 2013 Remaster,rock,2003.0,64.0
+AC/DC,Are You Ready,rock,1990.0,64.0
+Godsmack,When Legends Rise,rock,2018.0,64.0
+Bring Me The Horizon,mother tongue,rock,2019.0,64.0
+The Wombats,Bee-Sting,rock,2018.0,64.0
+REO Speedwagon,Take It On the Run - Remastered,rock,1980.0,64.0
+Pearl Jam,Elderly Woman Behind the Counter in a Small Town (Remastered),rock,1993.0,64.0
+Joni Mitchell,California,rock,1971.0,64.0
+The Black Keys,Lonely Boy,rock,2011.0,64.0
+Staind,Mudshovel,rock,1999.0,64.0
+Kings of Leon,Find Me,rock,2016.0,64.0
+Jackson Browne,Doctor My Eyes,rock,1972.0,64.0
+Carole King,Bitter With The Sweet,rock,1968.0,64.0
+Bob Dylan,Shelter from the Storm,rock,1975.0,64.0
+Kings of Leon,Wait for Me,rock,2013.0,64.0
+Foals,What Went Down,rock,2015.0,64.0

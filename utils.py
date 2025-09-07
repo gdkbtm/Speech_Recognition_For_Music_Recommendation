@@ -27,21 +27,22 @@ def setMicrophone():
 #find the duplicate ganre in all rows and select the max one
 def find_highest_duplicate(arr): 
     counts = Counter(arr)
-    print('ARR ', counts)
-
+    print('1 ', counts)
     duplicates = [item for item, count in counts.items() if count > 1]
+    print('2 ', duplicates)
     no_duplicates = [item for item, count in counts.items() if count == 1]
-    #print('no_duplicates ', no_duplicates)
+    print('3 ', no_duplicates)
     if duplicates:
         return max(duplicates)
     else:
         return max(no_duplicates)
 
 #Select the genre from the row
-def get_artist_genre(highest_dup):
-    #print('highest_dup ', highest_dup)
+def get_artist_genre(highest_dup):   
     first_token = highest_dup.split(',')
-    #print('first_token ', first_token)
+    print('FIRST TOKEN ', first_token)
+    print(first_token)
+
     if len(first_token) > 1:
         highest_dup = str(highest_dup)[1:-1]
         highest_dup = highest_dup.split(',')[0]
@@ -55,7 +56,6 @@ def fuzzySearch(df, name, artistName_as_db):
     for i in df['artists_name_lower']:
         #match voice input with artist name from the list
         a = fuzz.ratio(i, name.lower())
-        #print(a, i)
         #if match is 75%, then match the input with closest artist from the list
         if(a >= 75):
             print('MATCH ', a, i)
@@ -64,6 +64,7 @@ def fuzzySearch(df, name, artistName_as_db):
             break
     return df, name, artistName_as_db
 
+#creates CSV files for user songs (artist_selected_songs.csv) and recommended artists (artist_recommend_songs)
 def create_artist_recommend(genre_data, genre_data_new, artistName):
     temp_folder_path = 'music_data'
     # Saving a CSV file of the dataset for predicting purposes.
