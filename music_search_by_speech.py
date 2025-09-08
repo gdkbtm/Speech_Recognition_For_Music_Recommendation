@@ -89,6 +89,8 @@ def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, arti
     if(len(artist_select) > 0):    
         liRecommend_Artist = [] 
         liSelect_Artist = []
+        genre_data_for_artist = []
+        genre_data_for_Recommend = []
         #Remove user input arists songs from the list
         indices_to_remove = np.where(genre_data['artists_name_lower'] == artistName_as_db)
         #Remove all other arists songs and keep only user input arists songs
@@ -97,34 +99,36 @@ def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, arti
         #genre_data_new is for to filter out artists songs.
         #genre_data is for to filter out recommended artists songs.
         genre_data_new = genre_data
+        genre_data_for_artist = genre_data
+        genre_data_for_Recommend = genre_data
         indices_to_remove = str(indices_to_remove)[8:-4]
          
         indices_to_remove = indices_to_remove.split(',')
         for iRemove in indices_to_remove:
             i = int(iRemove.strip())
-            liRecommend_Artist.append(genre_data.index[i])
+            liRecommend_Artist.append(genre_data_for_Recommend.index[i])
         for iRemove in liRecommend_Artist:
-             genre_data = genre_data.drop(iRemove)
+             genre_data_for_Recommend = genre_data_for_Recommend.drop(iRemove)
        
         indices_to_remain = str(indices_to_remain)[8:-4]
         indices_to_remain = indices_to_remain.split(',')
         for iRemove in indices_to_remain:
             i = int(iRemove.strip())
-            liSelect_Artist.append(genre_data_new.index[i])
+            liSelect_Artist.append(genre_data_for_artist.index[i])
         for iRemove in liSelect_Artist:
-            genre_data_new = genre_data_new.drop(iRemove)
+            genre_data_for_artist = genre_data_for_artist.drop(iRemove)
  
-    return genre, genre_data, genre_data_new
+    return genre_data, genre_data_for_artist, genre_data_for_Recommend
 
 def getSongInfo(exploded_track_df, filtered_df, artistName, artistName_as_db):
     if(len(filtered_df) > 0):
         start_year = 1960
         end_year = 2022
-        genre, genre_data, genre_data_new = n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, artistName, start_year, end_year)               
+        genre_data, genre_data_for_artist, genre_data_for_Recommend = n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, artistName, start_year, end_year)               
     else:
         print('No match found for the artist', artistName)
 
-    return genre_data, genre_data_new
+    return genre_data, genre_data_for_artist, genre_data_for_Recommend
           
 if __name__ == '__main__':
     #counter to terminate after no input from user after 3 attempts
@@ -139,8 +143,8 @@ if __name__ == '__main__':
         if(len(artistName) > 0):
             exploded_track_df, filtered_df, artistName_as_db, artistMatch = load_data(artistName)
             if(len(filtered_df) > 0 and artistMatch == True):
-                genre_data, genre_data_new = getSongInfo(exploded_track_df, filtered_df, artistName, artistName_as_db)
-                create_artist_recommend(genre_data, genre_data_new, artistName)
+                genre_data, genre_data_for_artist, genre_data_for_Recommend = getSongInfo(exploded_track_df, filtered_df, artistName, artistName_as_db)
+                create_artist_recommend(genre_data, genre_data_for_artist, genre_data_for_Recommend, artistName)
                  #reset the counter
                 count = 0 
             else:

@@ -61,7 +61,7 @@ def fuzzySearch(df, name, artistName_as_db):
     return df, name, artistName_as_db, artistMatch
 
 #creates CSV files for user songs (artist_selected_songs.csv) and recommended artists (artist_recommend_songs)
-def create_artist_recommend(genre_data, genre_data_new, artistName):
+def create_artist_recommend(genre_data, genre_data_for_artist, genre_data_for_Recommend, artistName):
     temp_folder_path = 'music_data'
     # Saving a CSV file of the dataset for predicting purposes.
     artist_recommend_file = 'artist_recommend_songs.csv'
@@ -72,8 +72,8 @@ def create_artist_recommend(genre_data, genre_data_new, artistName):
     num_pred = 500
     #csv_predict[:num_pred].to_csv(os.path.join(temp_folder_path, "artists_new.csv"), index=False)
     # This CSV file contains the price of the tested diamonds.
-    genre_data[["artists_name", "name", "genres", "release_year", "popularity"]][:num_pred].to_csv(os.path.join(temp_folder_path, artist_recommend_file),
+    genre_data_for_Recommend[["artists_name", "name", "genres", "release_year", "popularity"]][:num_pred].to_csv(os.path.join(temp_folder_path, artist_recommend_file),
                                 index=False)
-    genre_data_new[["artists_name", "name", "genres", "release_year", "popularity"]][:num_pred].to_csv(os.path.join(temp_folder_path, artist_select_file),
+    genre_data_for_artist[["artists_name", "name", "genres", "release_year", "popularity"]][:num_pred].to_csv(os.path.join(temp_folder_path, artist_select_file),
                                 index=False)
     print('Artists recommend songs file ', artist_recommend_file, 'for', artistName, "is created.")
