@@ -27,6 +27,7 @@ def read_data():
 
 def load_data(name):
     filtered_df = []
+    exploded_track_df = []
     df = read_data()
     # variable to store the artist name match from data source
     # If user input is Mike Jackson, the datasource match to Michael Jackson
@@ -40,13 +41,14 @@ def load_data(name):
         #conduct fuzzy search for artist voice input with database (csv file)
         #match the artist name 
         #like if voice says 'Simon and Garfunkel', then match with 'Simon & Garfunkel' from csv file
-        df, name, artistName_as_db = fuzzySearch(df, name, artistName_as_db)       
-        filtered_df = df[df['artists_name_lower'] == name.lower()]
-        #print('filtered_df size', filtered_df)
-        df['genres'] = df.genres.apply(lambda x: [i[1:-1] for i in str(x)[1:-1].split(", ")])
-    exploded_track_df = df.explode("genres")
+        df, name, artistName_as_db, artistMatch = fuzzySearch(df, name, artistName_as_db) 
+        if(artistMatch == True):
+            filtered_df = df[df['artists_name_lower'] == name.lower()]
+            #print('filtered_df size', filtered_df)
+            df['genres'] = df.genres.apply(lambda x: [i[1:-1] for i in str(x)[1:-1].split(", ")])
+            exploded_track_df = df.explode("genres")
     
-    return exploded_track_df, filtered_df, artistName_as_db
+    return exploded_track_df, filtered_df, artistName_as_db, artistMatch
 
 # Define function to return Spotify URIs and audio feature values of top neighbors (ascending)
 def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, artist_select, start_year, end_year):
@@ -81,15 +83,8 @@ def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, arti
     neigh = NearestNeighbors()
     neigh.fit(genre_data[audio_feats].to_numpy())
     
-    n_neighbors = neigh.kneighbors([test_feat], n_neighbors=len(genre_data), return_distance=False)[0]
-    
     #Search nearest neighbor
-    artists_name_lower = genre_data.iloc[n_neighbors]['artists_name_lower'].to_numpy()
-    artists_id = genre_data.iloc[n_neighbors]['artists_id'].to_numpy()    
-    artists_name = genre_data.iloc[n_neighbors]['artists_name'].to_numpy()
-    artist_info = [genre_data.iloc[n_neighbors]['artists_id'].to_numpy(), genre_data.iloc[n_neighbors]['artists_name'].to_numpy()]
-    uris = genre_data.iloc[n_neighbors]["uri"].tolist()
-    audios = genre_data.iloc[n_neighbors][audio_feats].to_numpy()
+    n_neighbors = neigh.kneighbors([test_feat], n_neighbors=len(genre_data), return_distance=False)[0]
 
     if(len(artist_select) > 0):    
         liRecommend_Artist = [] 
@@ -98,12 +93,6 @@ def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, arti
         indices_to_remove = np.where(genre_data['artists_name_lower'] == artistName_as_db)
         #Remove all other arists songs and keep only user input arists songs
         indices_to_remain = np.where(genre_data['artists_name_lower'] != artistName_as_db)
-
-        uris = np.delete(uris, indices_to_remove)
-        audios = np.delete(audios, indices_to_remove)
-        artists_id = np.delete(artists_id, indices_to_remove)
-        artists_name = np.delete(artists_name, indices_to_remove)
-        artist_info = np.delete(artist_info, indices_to_remove)
 
         #genre_data_new is for to filter out artists songs.
         #genre_data is for to filter out recommended artists songs.
@@ -125,13 +114,13 @@ def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, arti
         for iRemove in liSelect_Artist:
             genre_data_new = genre_data_new.drop(iRemove)
  
-    return genre, genre_data, genre_data_new, uris, audios, artists_id, artists_name, artist_info
+    return genre, genre_data, genre_data_new
 
 def getSongInfo(exploded_track_df, filtered_df, artistName, artistName_as_db):
     if(len(filtered_df) > 0):
         start_year = 1960
-        end_year = 2000
-        genre, genre_data, genre_data_new, uris, audios, artists_id, artists_name, artist_info = n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, artistName, start_year, end_year)               
+        end_year = 2022
+        genre, genre_data, genre_data_new = n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, artistName, start_year, end_year)               
     else:
         print('No match found for the artist', artistName)
 
@@ -148,8 +137,8 @@ if __name__ == '__main__':
         artistName = setMicrophone()
         print('Name ', artistName)
         if(len(artistName) > 0):
-            exploded_track_df, filtered_df, artistName_as_db = load_data(artistName)
-            if(len(filtered_df) > 0):
+            exploded_track_df, filtered_df, artistName_as_db, artistMatch = load_data(artistName)
+            if(len(filtered_df) > 0 and artistMatch == True):
                 genre_data, genre_data_new = getSongInfo(exploded_track_df, filtered_df, artistName, artistName_as_db)
                 create_artist_recommend(genre_data, genre_data_new, artistName)
                  #reset the counter
