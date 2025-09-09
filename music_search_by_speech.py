@@ -1,5 +1,5 @@
 # Import libraries
-from utils import find_highest_duplicate, get_artist_genre, create_artist_recommend, fuzzySearch, setMicrophone, fuzzySearchForLyrics
+from utils import find_highest_duplicate, get_artist_genre, create_artist_recommend, fuzzySearch, setMicrophone
 
 import glob
 import pandas as pd
@@ -42,32 +42,6 @@ def load_data(name):
         #match the artist name 
         #like if voice says 'Simon and Garfunkel', then match with 'Simon & Garfunkel' from csv file
         df, name, artistName_as_db, artistMatch = fuzzySearch(df, name, artistName_as_db) 
-        if(artistMatch == True):
-            filtered_df = df[df['artists_name_lower'] == name.lower()]
-            #print('filtered_df size', filtered_df)
-            df['genres'] = df.genres.apply(lambda x: [i[1:-1] for i in str(x)[1:-1].split(", ")])
-            exploded_track_df = df.explode("genres")
-    
-    return exploded_track_df, filtered_df, artistName_as_db, artistMatch
-
-def load_data_for_lyrics(searchString):
-    name = searchString
-    filtered_df = []
-    exploded_track_df = []
-    df = read_data()
-    # variable to store the artist name match from data source
-    # If user input is Mike Jackson, the datasource match to Michael Jackson
-    artistName_as_db = str
-
-    df = df.drop_duplicates(subset=['uri'], keep='first')
-    #add new column
-    if(len(name) > 0):
-        df['name_lower'] = df['name'].str.lower()
-        row_count = len(df)
-        #conduct fuzzy search for artist voice input with database (csv file)
-        #match the artist name 
-        #like if voice says 'Simon and Garfunkel', then match with 'Simon & Garfunkel' from csv file
-        df, name, artistName_as_db, artistMatch = fuzzySearchForLyrics(df, name, artistName_as_db) 
         if(artistMatch == True):
             filtered_df = df[df['artists_name_lower'] == name.lower()]
             #print('filtered_df size', filtered_df)
@@ -172,9 +146,7 @@ if __name__ == '__main__':
                 create_artist_recommend(genre_data, genre_data_for_artist, genre_data_for_Recommend, artistName)
                  #reset the counter
                 count = 0 
-            else:
-                searchString = artistName 
-                exploded_track_df, filtered_df, artistName_as_db, artistMatch = load_data_for_lyrics(searchString)
+            else: 
                 print("Could not understand input audio.")                     
         else:
             print("Could not understand input audio.")

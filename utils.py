@@ -61,15 +61,6 @@ def fuzzySearch(df, name, artistName_as_db):
             break
     return df, name, artistName_as_db, artistMatch
 
-#conduct fuzzy search for artist voice input with database (csv file)
-def fuzzySearchForLyrics(df, name, artistName_as_db):
-    artistMatch = False
-    getMatchingSegment(df, name, artistName_as_db)
-    #for i in df['name_lower']:
-        #match voice input with artist name from the list
-        
-    return df, name, artistName_as_db, artistMatch
-
 #creates CSV files for user songs (artist_selected_songs.csv) and recommended artists (artist_recommend_songs)
 def create_artist_recommend(genre_data, genre_data_for_artist, genre_data_for_Recommend, artistName):
     temp_folder_path = 'music_data'
@@ -87,28 +78,3 @@ def create_artist_recommend(genre_data, genre_data_for_artist, genre_data_for_Re
     genre_data_for_artist[["artists_name", "name", "genres", "release_year", "popularity"]][:num_pred].to_csv(os.path.join(temp_folder_path, artist_select_file),
                                 index=False)
     print('Artists recommend songs file ', artist_recommend_file, 'for', artistName, "is created.")
-
-def getMatchingSegment(df, search_group, artistName_as_db):
-    # Option 1: Using partial_ratio to check if the group is a close match to a substring
-  
-
-    # Option 2: Using process.extractOne to find the best matching segment
-    # We can generate potential segments from the main_string for comparison
-    for main_string in df['name_lower']:
-        if(len(str(main_string)) > 0):
-            score = fuzz.partial_ratio(search_group, main_string)
-            print(f"Partial Ratio score for '{search_group}' in '{main_string}': {score}")
-            potential_segments = [
-                main_string[i:j] for i in range(len(main_string)) for j in range(i + len(search_group.split()) * 2, len(main_string) + 1)
-            ] # This creates many substrings, adjust range for efficiency
-            best_match = process.extractOne(search_group, potential_segments, scorer=fuzz.token_set_ratio)
-            print('best_match ', best_match)
-            if(best_match != None):
-                print(f"Best matching segment: '{best_match[0]}' with score: {best_match[1]}")
-            #my_int = best_match.pop(0)
-                print(int(best_match[1]))
-                i = int(best_match[1])
-            if(i > 95):
-                print(f"Best matching segment: '{best_match[0]}' with score: {best_match[1]}")
-                print(best_match[0])
-                break
