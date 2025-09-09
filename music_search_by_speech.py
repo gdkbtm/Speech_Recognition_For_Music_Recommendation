@@ -1,5 +1,5 @@
 # Import libraries
-from utils import find_highest_duplicate, get_artist_genre, create_artist_recommend, fuzzySearch, setMicrophone
+from utils import find_highest_duplicate, get_artist_genre, create_artist_recommend, fuzzySearch, setMicrophone, fuzzySearchForLyrics
 
 import glob
 import pandas as pd
@@ -50,6 +50,32 @@ def load_data(name):
     
     return exploded_track_df, filtered_df, artistName_as_db, artistMatch
 
+def load_data_for_lyrics(searchString):
+    name = searchString
+    filtered_df = []
+    exploded_track_df = []
+    df = read_data()
+    # variable to store the artist name match from data source
+    # If user input is Mike Jackson, the datasource match to Michael Jackson
+    artistName_as_db = str
+
+    df = df.drop_duplicates(subset=['uri'], keep='first')
+    #add new column
+    if(len(name) > 0):
+        df['name_lower'] = df['name'].str.lower()
+        row_count = len(df)
+        #conduct fuzzy search for artist voice input with database (csv file)
+        #match the artist name 
+        #like if voice says 'Simon and Garfunkel', then match with 'Simon & Garfunkel' from csv file
+        df, name, artistName_as_db, artistMatch = fuzzySearchForLyrics(df, name, artistName_as_db) 
+        if(artistMatch == True):
+            filtered_df = df[df['artists_name_lower'] == name.lower()]
+            #print('filtered_df size', filtered_df)
+            df['genres'] = df.genres.apply(lambda x: [i[1:-1] for i in str(x)[1:-1].split(", ")])
+            exploded_track_df = df.explode("genres")
+    
+    return exploded_track_df, filtered_df, artistName_as_db, artistMatch
+
 # Define function to return Spotify URIs and audio feature values of top neighbors (ascending)
 def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, artist_select, start_year, end_year):
     # The artist given
@@ -58,7 +84,6 @@ def n_neighbors_uri_audio(artistName_as_db, exploded_track_df, filtered_df, arti
         print('The found in csv files: ')
         #find the duplicate ganre in all rows and select the max one
         genre = find_highest_duplicate(filtered_df.genres)
-        print('genre111 ', genre)
         #get the genre string value
         genre = get_artist_genre(genre)
         print('genre222 ', genre)
@@ -148,6 +173,8 @@ if __name__ == '__main__':
                  #reset the counter
                 count = 0 
             else:
+                searchString = artistName 
+                exploded_track_df, filtered_df, artistName_as_db, artistMatch = load_data_for_lyrics(searchString)
                 print("Could not understand input audio.")                     
         else:
             print("Could not understand input audio.")
