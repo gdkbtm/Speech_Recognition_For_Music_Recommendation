@@ -1,5 +1,6 @@
 # Import libraries
-from utils import find_highest_duplicate, get_artist_genre, create_artist_recommend, fuzzySearch, setMicrophone, fuzzySearchForLyrics
+from utils import find_highest_duplicate, get_artist_genre, create_artist_recommend, fuzzySearch, setMicrophone, fuzzy_search_chunked_glob, getSongNameFromUser
+
 
 import glob
 import pandas as pd
@@ -42,32 +43,6 @@ def load_data(name):
         #match the artist name 
         #like if voice says 'Simon and Garfunkel', then match with 'Simon & Garfunkel' from csv file
         df, name, artistName_as_db, artistMatch = fuzzySearch(df, name, artistName_as_db) 
-        if(artistMatch == True):
-            filtered_df = df[df['artists_name_lower'] == name.lower()]
-            #print('filtered_df size', filtered_df)
-            df['genres'] = df.genres.apply(lambda x: [i[1:-1] for i in str(x)[1:-1].split(", ")])
-            exploded_track_df = df.explode("genres")
-    
-    return exploded_track_df, filtered_df, artistName_as_db, artistMatch
-
-def load_data_for_lyrics(searchString):
-    name = searchString
-    filtered_df = []
-    exploded_track_df = []
-    df = read_data()
-    # variable to store the artist name match from data source
-    # If user input is Mike Jackson, the datasource match to Michael Jackson
-    artistName_as_db = str
-
-    df = df.drop_duplicates(subset=['uri'], keep='first')
-    #add new column
-    if(len(name) > 0):
-        df['name_lower'] = df['name'].str.lower()
-        row_count = len(df)
-        #conduct fuzzy search for artist voice input with database (csv file)
-        #match the artist name 
-        #like if voice says 'Simon and Garfunkel', then match with 'Simon & Garfunkel' from csv file
-        df, name, artistName_as_db, artistMatch = fuzzySearchForLyrics(df, name, artistName_as_db) 
         if(artistMatch == True):
             filtered_df = df[df['artists_name_lower'] == name.lower()]
             #print('filtered_df size', filtered_df)
@@ -173,9 +148,33 @@ if __name__ == '__main__':
                  #reset the counter
                 count = 0 
             else:
-                searchString = artistName 
-                exploded_track_df, filtered_df, artistName_as_db, artistMatch = load_data_for_lyrics(searchString)
-                print("Could not understand input audio.")                     
+                #Search for lyrics from data
+                user_input = artistName 
+                #searchString = "Get me lyrics of Higher Ground"
+                song_lyrics_required = getSongNameFromUser(user_input)
+                if(song_lyrics_required == None and len(user_input) > 0):
+                    song_lyrics_required = user_input
+                if(len(song_lyrics_required) > 0):
+                    #file_name = '/Users/dineshk/work/MLOps/music/Speech_Recognition_For_Music_Recommendation/csv_data/*.csv';
+                    file_name = '/Users/dineshk/work/MLOps/music/Speech_Recognition_For_Music_Recommendation/csv_data/filtered_track_df.csv'
+                    results = fuzzy_search_chunked_glob(file_name, song_lyrics_required, 'name', threshold=85)
+                    print(len(results))
+                    if(len(results) > 0):
+                        results.sort(key = lambda row:row[1])
+                        
+                        maxItem = results[-1]
+                        print(maxItem[1])
+                        
+                        print('Artists: ', maxItem[0]['artists_name'])
+                        print('Song Name: ', maxItem[0]['name'])
+                        #print('Album: ', maxItem[0]['release_year'])
+                        print('Year: ', int(maxItem[0]['release_year']))
+                        print(maxItem[0]['lyrics'])
+                    else:
+                        print('No lyrics found for', song_lyrics_required)
+                else:
+                    print('Could not understand input audio. Please try again')
+                     
         else:
             print("Could not understand input audio.")
             count += 1 

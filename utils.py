@@ -3,7 +3,8 @@ import speech_recognition as sr
 from collections import Counter
 import pandas as pd
 import math
-
+import glob
+import re
 from fuzzywuzzy import fuzz, process
 import os
 
@@ -63,16 +64,6 @@ def fuzzySearch(df, name, artistName_as_db):
             break
     return df, name, artistName_as_db, artistMatch
 
-#conduct fuzzy search for artist voice input with database (csv file)
-def fuzzySearchForLyrics(df, name, artistName_as_db):
-    print('fuzzySearchForLyrics')
-    artistMatch = False
-    getMatchingSegment(df, name, artistName_as_db)
-    #for i in df['name_lower']:
-        #match voice input with artist name from the list
-        
-    return df, name, artistName_as_db, artistMatch
-
 #creates CSV files for user songs (artist_selected_songs.csv) and recommended artists (artist_recommend_songs)
 def create_artist_recommend(genre_data, genre_data_for_artist, genre_data_for_Recommend, artistName):
     temp_folder_path = 'music_data'
@@ -91,186 +82,67 @@ def create_artist_recommend(genre_data, genre_data_for_artist, genre_data_for_Re
                                 index=False)
     print('Artists recommend songs file ', artist_recommend_file, 'for', artistName, "is created.")
 
-def getMatchingSegment(df, search_lyrics, artistName_as_db):
-    # Option 1: Using partial_ratio to check if the group is a close match to a substring
-  
-    print(search_lyrics)
- 
-    print(df['lyrics'])
-    find_lyrics = df['lyrics']
-    data1 = {
-        'name': [
-            find_lyrics
-        ]
-        }
-    '''
-    # Create two sample DataFrames representing large datasets
-    data1 = {     
-        'name': [
-        """
-            Hello darkness, my old friend
-            I've come to talk with you again
-            Because a vision softly creeping
-            Left its seeds while I was sleeping
-            And the vision that was planted in my brain
-            Still remains
-            Within the sound of silence
-            In restless dreams, I walked alone
-            Narrow streets of cobblestone
-            'Neath the halo of a street lamp
-            I turned my collar to the cold and damp
-            When my eyes were stabbed by the flash of a neon light
-            That split the night
-            And touched the sound of silence
-            And in the naked light, I saw
-            Ten thousand people, maybe more
-            People talking without speaking
-            People hearing without listening
-            People writing songs that voices never shared
-            And no one dared
-            Disturb the sound of silence
-            "Fools" said I, "You do not know
-            Silence like a cancer grows
-            Hear my words that I might teach you
-            Take my arms that I might reach you"
-            But my words, like silent raindrops fell
-            And echoed in the wells of silence
-            And the people bowed and prayed
-            To the neon god they made
-            And the sign flashed out its warning
-            In the words that it was forming
-            Then the sign said, "The words of the prophets are written on the subway walls
-            In tenement halls"
-            And whispered in the sound of silence
-            """, 
-            """     
-            On a dark desert highway, cool wind in my hair
-            Warm smell of colitas, rising up through the air
-            Up ahead in the distance, I saw a shimmering light
-            My head grew heavy and my sight grew dim
-            I had to stop for the night
-            There she stood in the doorway
-            I heard the mission bell
-            And I was thinking to myself
-            "This could be Heaven or this could be Hell"
-            Then she lit up a candle and she showed me the way
-            There were voices down the corridor
-            I thought I heard them say
-            
-            Welcome to the Hotel California
-            Such a lovely place (Such a lovely place)
-            Such a lovely face
-            Plenty of room at the Hotel California
-            Any time of year (Any time of year)
-            You can find it here
-            
-            Her mind is Tiffany-twisted, she got the Mercedes bends
-            She got a lot of pretty, pretty boys she calls friends
-            How they dance in the courtyard, sweet summer sweat
-            Some dance to remember, some dance to forget
-            
-            So I called up the Captain
-            "Please bring me my wine."
-            He said, "We haven't had that spirit here since nineteen sixty nine."
-            And still those voices are calling from far away
-            Wake you up in the middle of the night
-            Just to hear them say
-            
-            Welcome to the Hotel California
-            Such a lovely place (Such a lovely place)
-            Such a lovely face
-            They livin' it up at the Hotel California
-            What a nice surprise (what a nice surprise)
-            Bring your alibis
-            
-            Mirrors on the ceiling
-            The pink champagne on ice
-            And she said "We are all just prisoners here, of our own device"
-            And in the master's chambers
-            They gathered for the feast
-            They stab it with their steely knives
-            But they just can't kill the beast
-            
-            Last thing I remember
-            I was running for the door
-            I had to find the passage back to the place I was before
-            "Relax," said the night man
-            "We are programmed to receive
-            You can check-out any time you like
-            But you can never leave!"
-            """,
-            """
-            A winter's day
-            In a deep and dark December
-            I am alone
-            Gazing from my window to the streets below
-            On a freshly fallen silent shroud of snow
-            I am a rock I am an island
-            I've built walls
-            A fortress deep and mighty
-            That none may penetrate
-            I have no need of friendship, friendship causes pain
-            It's laughter and it's loving I disdain
-            I am a rock I am an island
-            Don't talk of love
-            Well I've heard the word before
-            It's sleeping in my memory
-            I won't disturb the slumber of feelings that have died
-            If I never loved I never would have cried
-            I am a rock I am an island
-            I have my books
-            And my poetry to protect me
-            I am shielded in my armor
-            Hiding in my room safe within my womb
-            I touch no one and no one touches me
-            I am a rock I am an island
-            And a rock feels no pain
-            And an island never cries
-            """
-        ]
-    }
-    ''' 
-    df1 = pd.DataFrame(data1)
 
-    data2 = {   
-        #'songName': ['Hotel California - Remaster 2013']
-        'songName': [search_lyrics]
-    }
-    #data2 = {   
-    #    'Company_Name': ['Apple Corps']
-    #}
-    df2 = pd.DataFrame(data2)
-
-    # Define a function for fuzzy matching
-    def fuzzy_match_company(name, choices, scorer=fuzz.token_set_ratio, score_cutoff=60):
-        """
-        Performs fuzzy matching to find the best match for a given name
-        within a list of choices, returning the matched name and its score.
-        """
-        match = process.extractOne(name, choices, scorer=scorer, score_cutoff=score_cutoff)
-        if match:
-            return match[0], match[1]  # Return matched name and score
-        return None, None  # No match found above cutoff
-
-    # Extract the list of company names from df2 for matching
-    company_choices = df2['songName'].tolist()
+def fuzzy_search_chunked(file_path, search_term, column_name, threshold, chunksize=10000):
+    matches = []
     
-    # Apply the fuzzy matching function to each name in df1
-    # This creates new columns for the matched company name and its score
-    #df1[['Matched_Company', 'Match_Score']] = df1['name'].apply(
-    #    lambda x: pd.Series(fuzzy_match_company(x, company_choices))
-    #)
-    df1[['name','Match_Score']] = df1['name'].apply(
-        lambda x: pd.Series(fuzzy_match_company(x, company_choices))
-    )
-    print(df1)
-    print(df1['Match_Score'])
+    for chunk in pd.read_csv(file_path, chunksize=chunksize):
+        #print(chunk)
+        # Ensure the column exists in the chunk
+        if column_name in chunk.columns:
+            # Apply fuzzy matching to the specified column
+            for index, row in chunk.iterrows():
+                text = str(row[column_name])
+                #print(text)
+                score = fuzz.partial_ratio(search_term.lower(), text.lower())
+                #print(score)
+                if score >= threshold:
+                    a = row.to_dict()
+                    print(search_term, ' ', a['name'], ' ', score)
+                    matches.append((row.to_dict(), score))
+                    #matches.add((row.to_dict(), score))
+                    if(score == 100):
+                        break
+    return matches
 
-    max_value_col_A = df1['Match_Score'].idxmax()
-    print('max_value_col_A ', max_value_col_A)
-    print(math.isnan(max_value_col_A))
-    #if(max_value_col_A.isna()):
-    if(math.isnan(max_value_col_A) == False):
-        print(data1['name'][max_value_col_A])
+def getSongNameFromUser(user_input):
+    song_lyrics_required = str
+    keyword_pattern = "lyrics of"
+    song_lyrics_required = str
+    
+    regex_pattern = keyword_pattern + "(.*)"
+    
+    match = re.search(regex_pattern, user_input)
+    print('match ', match)
+    if match:
+        found_string_and_rest = match.group(0)
+        rest_part = match.group(1)
+        print("Full match: ", found_string_and_rest)
+        print("Rest part: ", rest_part.strip())
+        song_lyrics_required = rest_part.strip()
+        return song_lyrics_required;
     else:
-        print('No matching found for the input.')
+        return None
+    
+def fuzzy_search_chunked_glob(file_path, search_term, column_name, threshold, chunksize=10000):
+    matches = []
+    all_files = glob.glob(file_path)
+    for filename in all_files:
+        for chunk in pd.read_csv(filename, chunksize=chunksize):
+            #print(chunk)
+            # Ensure the column exists in the chunk
+            if column_name in chunk.columns:
+                # Apply fuzzy matching to the specified column
+                for index, row in chunk.iterrows():
+                    text = str(row[column_name])
+                    #print(text)
+                    score = fuzz.partial_ratio(search_term.lower(), text.lower())
+                    #print(score)
+                    if score >= threshold:
+                        a = row.to_dict()
+                        print(search_term, ' ', a['name'], ' ', score)
+                        matches.append((row.to_dict(), score))
+                        #matches.add((row.to_dict(), score))
+                        if(score == 100):
+                            break
+    return matches
