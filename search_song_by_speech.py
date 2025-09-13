@@ -1,5 +1,5 @@
 # Import libraries
-from utils import find_highest_duplicate, get_artist_genre, create_artist_recommend, fuzzySearch, setMicrophone, fuzzy_search_chunked_glob, getSongNameFromUser
+from utils import find_highest_duplicate, get_artist_genre, create_artist_recommend, fuzzySearch, setMicrophone
 
 import glob
 import pandas as pd
@@ -129,23 +129,6 @@ def getSongInfo(exploded_track_df, filtered_df, artistName, artistName_as_db):
 
     return genre_data, genre_data_for_artist, genre_data_for_Recommend
 
-def setSongNameFromUser(user_input):
-    #searchString = "Get me lyrics of Higher Ground"
-    song_lyrics_required = getSongNameFromUser(user_input)
-    if(song_lyrics_required == None and len(user_input) > 0):
-        song_lyrics_required = user_input
-    if(len(song_lyrics_required) > 0):
-        file_name = 'csv_data/filtered_track_df.csv'
-        strLyrics = str
-        strLyrics = fuzzy_search_chunked_glob(file_name, song_lyrics_required, 'lyrics')
-        #print(len(strLyrics))
-        if(len(strLyrics) > 0):                                
-            print(strLyrics)
-        else:
-            print('No lyrics found for', song_lyrics_required)
-    else:
-        print('Could not understand input audio. Please try again')
-
 
 if __name__ == '__main__':
     #counter to terminate after no input from user after 3 attempts
@@ -157,22 +140,14 @@ if __name__ == '__main__':
         # Create a Recognizer object        
         artistName = setMicrophone()
         print('Name ', artistName)
-        print('aaa ', artistName.find('lyrics'))
-        if(len(artistName) > 0):
-            if(artistName.find('lyrics') != -1):
-                user_input = artistName
-                setSongNameFromUser(user_input)
-            else:
-                exploded_track_df, filtered_df, artistName_as_db, artistMatch = load_data(artistName)
-                if(len(filtered_df) > 0 and artistMatch == True):
-                    genre_data, genre_data_for_artist, genre_data_for_Recommend = getSongInfo(exploded_track_df, filtered_df, artistName, artistName_as_db)
-                    create_artist_recommend(genre_data, genre_data_for_artist, genre_data_for_Recommend, artistName)
-                    #reset the counter
-                    count = 0 
-                else:
-                    #Search for lyrics from dataset again if artists are not found
-                    user_input = artistName 
-                    setSongNameFromUser(user_input)                                                  
+        
+        if(len(artistName) > 0):           
+            exploded_track_df, filtered_df, artistName_as_db, artistMatch = load_data(artistName)
+            if(len(filtered_df) > 0 and artistMatch == True):
+                genre_data, genre_data_for_artist, genre_data_for_Recommend = getSongInfo(exploded_track_df, filtered_df, artistName, artistName_as_db)
+                create_artist_recommend(genre_data, genre_data_for_artist, genre_data_for_Recommend, artistName)
+                #reset the counter
+                count = 0                                               
         else:
             print("Could not understand input audio.")
             count += 1 

@@ -5,7 +5,9 @@ import pandas as pd
 import math
 import glob
 import re
-from fuzzywuzzy import fuzz, process
+#from fuzzywuzzy import fuzz, process
+from rapidfuzz import process, fuzz
+
 import os
 
 def setMicrophone():
@@ -81,30 +83,7 @@ def create_artist_recommend(genre_data, genre_data_for_artist, genre_data_for_Re
     genre_data_for_artist[["artists_name", "name", "genres", "release_year", "popularity"]][:num_pred].to_csv(os.path.join(temp_folder_path, artist_select_file),
                                 index=False)
     print('Artists recommend songs file ', artist_recommend_file, 'for', artistName, "is created.")
-
-
-def fuzzy_search_chunked(file_path, search_term, column_name, threshold, chunksize=10000):
-    matches = []
-    
-    for chunk in pd.read_csv(file_path, chunksize=chunksize):
-        #print(chunk)
-        # Ensure the column exists in the chunk
-        if column_name in chunk.columns:
-            # Apply fuzzy matching to the specified column
-            for index, row in chunk.iterrows():
-                text = str(row[column_name])
-                #print(text)
-                score = fuzz.partial_ratio(search_term.lower(), text.lower())
-                #print(score)
-                if score >= threshold:
-                    a = row.to_dict()
-                    print(search_term, ' ', a['name'], ' ', score)
-                    matches.append((row.to_dict(), score))
-                    #matches.add((row.to_dict(), score))
-                    if(score == 100):
-                        break
-    return matches
-
+  
 def getSongNameFromUser(user_input):
     song_lyrics_required = str
     keyword_pattern = "lyrics of"
@@ -113,7 +92,7 @@ def getSongNameFromUser(user_input):
     regex_pattern = keyword_pattern + "(.*)"
     
     match = re.search(regex_pattern, user_input)
-    print('match ', match)
+    #print('match ', match)
     if match:
         found_string_and_rest = match.group(0)
         rest_part = match.group(1)
@@ -123,26 +102,69 @@ def getSongNameFromUser(user_input):
         return song_lyrics_required;
     else:
         return None
+
+def fuzzy_search_chunked_glob(fileName, searchSong, targetColumn, chunk_size=10000):
+
+    strLyrics = str
+    strSongName = searchSong
+    #List to print header
+    liName = []
+    liArtist = []
+    liPopularity = []
+    all_matches = []
+    headerData = {}
+    max_index = 0
+
+    chunks = pd.read_csv(fileName, chunksize=chunk_size)
+    df = chunks
+
+    for chunk in chunks:   
+        # Extract the column you want to search from the current chunk
+        columnData = chunk[targetColumn].tolist()
+        #print(len(columnData))
+        #convert column data to lower case
+        columnData = [item.lower() for item in columnData]
+        searchSong = searchSong.lower()
+        # Perform fuzzy search within this chunk
+        # You can adjust the scorer (e.g., fuzz.ratio, fuzz.partial_ratio) and threshold
+        #matches_in_chunk = process.extract(search_term, column_data, scorer=fuzz.WRatio, score_cutoff=60)
+        matches_in_chunk = process.extract(searchSong, columnData, scorer=fuzz.partial_ratio, score_cutoff=100)
+
+        #print(matches_in_chunk)
+        # Store the matches found in this chunk
+        for match_text, score, index_in_chunk in matches_in_chunk:
+            #print(match_text)
+            original_row = chunk.iloc[index_in_chunk]
+            #print(original_row.lyrics)
+            all_matches.append({'match_text': match_text, 'score': score, 'original_row': original_row.to_dict()})
+        #print('all_matches ', len(all_matches))
+
+        if(len(all_matches) > 0):
+            for match in all_matches:
+                liName.append(match['original_row']['name']) 
+                liArtist.append(match['original_row']['artists_name'])
+                liPopularity.append(match['original_row']['popularity'])
+            headerData = {
+                "Song Name": liName,
+                "Artist Name": liArtist,
+                "Popularity": liPopularity
+            }
+            #print(all_matches[1]['original_row']['popularity'])
+            li_all_matches = []
+            for match in all_matches:
+                li_all_matches.append(match['original_row']['popularity'])
+                #print(match['original_row']['popularity'], match['original_row']['artists_name'])
+            #convert to series
+            s = pd.Series(li_all_matches)
+            max_index = s.idxmax()
+            #print(max_index)         
+            strLyrics = all_matches[max_index]['original_row']['lyrics']
+            strSongName = all_matches[max_index]['original_row']['name']
+            #print(all_matches[max_index]['original_row']['lyrics'])
+        else:
+            strLyrics = ''
+            #strSongName = search_term
+            print('No match found')
+
+        return all_matches, headerData, max_index, strSongName, strLyrics
     
-def fuzzy_search_chunked_glob(file_path, search_term, column_name, threshold, chunksize=10000):
-    matches = []
-    all_files = glob.glob(file_path)
-    for filename in all_files:
-        for chunk in pd.read_csv(filename, chunksize=chunksize):
-            #print(chunk)
-            # Ensure the column exists in the chunk
-            if column_name in chunk.columns:
-                # Apply fuzzy matching to the specified column
-                for index, row in chunk.iterrows():
-                    text = str(row[column_name])
-                    #print(text)
-                    score = fuzz.partial_ratio(search_term.lower(), text.lower())
-                    #print(score)
-                    if score >= threshold:
-                        a = row.to_dict()
-                        print(search_term, ' ', a['name'], ' ', score)
-                        matches.append((row.to_dict(), score))
-                        #matches.add((row.to_dict(), score))
-                        if(score == 100):
-                            break
-    return matches
