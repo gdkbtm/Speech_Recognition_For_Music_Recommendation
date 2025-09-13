@@ -189,5 +189,5 @@ if __name__ == '__main__':
                 print("No input detected. Terminating the program.")
                 break
             
-        time.sleep(5)  # Pause for 5 seconds to prevent excessive CPU usage
+        time.sleep(10)  # Pause for 5 seconds to prevent excessive CPU usage
 
