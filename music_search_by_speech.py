@@ -136,8 +136,7 @@ def setSongNameFromUser(user_input):
     if(song_lyrics_required == None and len(user_input) > 0):
         song_lyrics_required = user_input
     if(len(song_lyrics_required) > 0):
-        #file_name = '/Users/dineshk/work/MLOps/music/Speech_Recognition_For_Music_Recommendation/csv_data/*.csv';
-        file_name = '/Users/dineshk/work/MLOps/music/Speech_Recognition_For_Music_Recommendation/csv_data/filtered_track_df.csv'
+        file_name = 'csv_data/filtered_track_df.csv'
         results = fuzzy_search_chunked_glob(file_name, song_lyrics_required, 'name', threshold=85)
         print(len(results))
         if(len(results) > 0):
